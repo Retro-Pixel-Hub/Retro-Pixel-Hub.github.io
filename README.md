@@ -114,13 +114,9 @@ Add `&debug` to a play URL (for example `play.html?game=snake&debug`) to expose 
 
 ## 🌍 Deploy to GitHub Pages
 
-**Option A: no CI (simplest)**
-1. Push this folder to the root of a GitHub repo, e.g. `retro-pixel-hub`.
-2. Go to **Settings → Pages → Build and deployment → Source: Deploy from a branch**, then choose `main` and `/ (root)`.
-3. After a minute, your hub is live at `https://<username>.github.io/retro-pixel-hub/`.
+This repo is published with **Settings → Pages → Build and deployment → Source: Deploy from a branch** (`main`, `/ (root)`). Every push to `main` goes live at https://retro-pixel-hub.github.io/ within a minute or two.
 
-**Option B: GitHub Actions**
-A ready workflow is included at `.github/workflows/pages.yml`. It runs the WFC tests, then deploys. Set **Settings → Pages → Source** to **GitHub Actions**.
+`.github/workflows/tests.yml` runs the WFC and catalogue tests on every push and pull request. It never deploys.
 
 Every path is relative, so the site works from any sub-folder. If you'd rather serve from `docs/`, move everything into `docs/` and select that folder in Pages settings.
 
@@ -231,7 +227,7 @@ The flagship Snake (`js/games/snake.js`) shows the lower-level module contract (
 ├── tests/                # wfc.test.mjs, catalog.test.mjs
 ├── manifest.json
 ├── sw.js
-└── .github/workflows/pages.yml
+└── .github/workflows/tests.yml
 ```
 
 ## 🎨 Art direction
