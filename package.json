@@ -1,0 +1,12 @@
+{
+  "name": "retro-pixel-hub",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Retro handheld-style pixel games with Wave Function Collapse maps. Pure static site \u2014 no build step.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/wfc.test.mjs && node tests/catalog.test.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}

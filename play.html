@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Play · Retro Pixel Hub</title>
+  <meta name="description" content="Play retro handheld-style pixel games in your browser — touch, keyboard and offline ready.">
+  <meta name="theme-color" content="#0f1410">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="preload" href="assets/fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="play-page">
+  <div class="player" id="player">
+    <header class="player-bar">
+      <a class="icon-btn" href="./" aria-label="Back to the hub" title="Back to hub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2h2v2h-2v2H8v2h2v2h2v2h-2v2H8v-2H6v-2H4V8h2V6h2V4h2z"/></svg>
+      </a>
+      <h1 class="player-title" id="gameTitle">Loading…</h1>
+      <button class="icon-btn" id="muteBtn" aria-label="Mute" title="Sound (M)">
+        <svg class="on" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-4h1v12H9l-4-4H2zM12 5h1v1h1v4h-1v1h-1z"/></svg>
+        <svg class="off" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-4h1v12H9l-4-4H2zM11 6h1v1h1V6h1v1h-1v1h1v1h-1V8h-1v1h-1V8h1V7h-1z"/></svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2h2v1h1v1h1v2h2v2h-2v2h-1v1h-1v1H9v2H7v-2H5v-1H4v-1H3V9H1V7h2V5h1V4h1V3h2zm0 5v1H6v2h1v1h2V9h1V7H9V6z"/></svg>
+      </button>
+      <button class="icon-btn" id="fsBtn" aria-label="Full screen" title="Full screen (F)">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1h5v2H3v3H1zm9 0h5v5h-2V3h-3zM1 10h2v3h3v2H1zm12 0h2v5h-5v-2h3z"/></svg>
+      </button>
+    </header>
+
+    <main class="console" id="console">
+      <section class="bezel">
+        <div class="bezel-top">
+          <span class="led" id="led" title="Power"></span>
+          <span class="bezel-label">PIXEL HUB <em>COLOR</em></span>
+        </div>
+        <div class="screen-wrap" id="screenWrap">
+          <div class="screen" id="screen">
+            <canvas id="game" width="320" height="288" aria-label="Game screen"></canvas>
+            <div class="scanlines" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" id="controls" aria-label="Touch controls">
+        <div class="dpad" id="dpad" role="group" aria-label="Direction pad">
+          <span class="dpad-up"></span><span class="dpad-right"></span>
+          <span class="dpad-down"></span><span class="dpad-left"></span>
+          <span class="dpad-center"></span>
+        </div>
+        <div class="ab">
+          <button class="round-btn btn-b" data-btn="b" aria-label="B button">B</button>
+          <button class="round-btn btn-a" data-btn="a" aria-label="A button">A</button>
+        </div>
+        <div class="pills">
+          <button class="pill-btn" data-btn="select" aria-label="Select">SELECT</button>
+          <button class="pill-btn" data-btn="start" aria-label="Start">START</button>
+        </div>
+        <div class="speaker" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </section>
+      <p class="kbd-hint" id="kbdHint">
+        <kbd>←↑↓→</kbd>/<kbd>WASD</kbd> move · <kbd>Z</kbd>/<kbd>Space</kbd> A · <kbd>X</kbd> B · <kbd>Enter</kbd> start · <kbd>M</kbd> mute · <kbd>F</kbd> full screen
+      </p>
+    </main>
+  </div>
+
+  <dialog class="dialog" id="settingsDialog" aria-labelledby="settingsTitle">
+    <form method="dialog">
+      <h2 id="settingsTitle">Settings</h2>
+      <label class="toggle"><input type="checkbox" name="sound"><span>Sound effects</span></label>
+      <label class="toggle"><input type="checkbox" name="music"><span>Chiptune music</span></label>
+      <label class="toggle"><input type="checkbox" name="vibration"><span>Vibration</span></label>
+      <label class="toggle"><input type="checkbox" name="scanlines"><span>LCD scanlines</span></label>
+      <label class="toggle"><input type="checkbox" name="daily"><span>Daily maps <small>(same villages for everyone today)</small></span></label>
+      <label class="select-row"><span>On-screen controls</span>
+        <select name="showControls">
+          <option value="auto">Auto</option>
+          <option value="always">Always</option>
+          <option value="never">Hidden</option>
+        </select>
+      </label>
+      <menu><button class="btn btn-primary" value="close">Done</button></menu>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript">This game needs JavaScript.</p></noscript>
+  <script type="module" src="js/shell.js"></script>
+</body>
+</html>
