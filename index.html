@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Retro Pixel Hub · Classic handheld games, rebuilt in pixel art</title>
+  <meta name="description" content="200+ free retro pixel games in your browser: snake, falling blocks, brick breaker, maze chase, minesweeper, 2048, sudoku, connect four and more. Offline-ready, touch friendly, Wave Function Collapse villages.">
+  <meta name="keywords" content="retro games, pixel art, snake game, game boy style, wave function collapse, procedural generation, PWA, browser games">
+  <meta name="theme-color" content="#0f1410">
+  <link rel="canonical" href="https://retro-pixel-hub.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://retro-pixel-hub.github.io/">
+  <meta property="og:site_name" content="Retro Pixel Hub">
+  <meta property="og:title" content="Retro Pixel Hub">
+  <meta property="og:description" content="Classic handheld games, rebuilt in crisp pixel art. Every map generated fresh with Wave Function Collapse.">
+  <meta property="og:image" content="https://retro-pixel-hub.github.io/assets/screenshots/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Retro Pixel Hub: a pixel-art village and handheld game console">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Retro Pixel Hub">
+  <meta name="twitter:description" content="Snake through procedurally generated pixel villages. Offline-ready PWA.">
+  <meta name="twitter:image" content="https://retro-pixel-hub.github.io/assets/screenshots/og-image.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="preload" href="assets/fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Retro Pixel Hub","url":"https://retro-pixel-hub.github.io/","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Retro Pixel Hub home">
+      <canvas id="brandIcon" width="16" height="16" aria-hidden="true"></canvas>
+      <span>PIXEL <em>HUB</em></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#games">Games</a>
+      <a href="#how" class="hide-sm">How it works</a>
+      <a href="#controls" class="hide-sm">Controls</a>
+      <button class="btn btn-ghost" id="installBtn" hidden>
+        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M5 0h2v6h2v2H8v1H7v1H5V9H4V8H3V6h2zM0 10h2v1h8v-1h2v2H0z"/></svg>Install
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Featured">
+    <canvas id="banner" aria-label="A pixel-art village generated live with Wave Function Collapse"></canvas>
+    <div class="hero-overlay">
+      <div class="hero-card">
+        <h1>RETRO PIXEL HUB<small>HANDHELD CLASSICS · REBUILT</small></h1>
+        <p>Over 200 pixel-perfect handheld-style games: arcade, puzzle and board classics. Free, offline and made for your phone.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="play.html?game=snake">
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 0h2v1h2v1h2v1h2v1h1v4h-1v1H8v1H6v1H4v1H2z"/></svg>Play Snake
+          </a>
+          <a class="btn btn-ghost" href="#games">Browse 200+ games</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-tools">
+      <span class="chip" id="seedChip" title="Seed of this village">SEED ----</span>
+      <button class="btn btn-ghost" id="rerollBtn" aria-label="Generate a new village">
+        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1h10v10H1zm2 2v2h2V3zm4 0v2h2V3zM3 7v2h2V7zm4 0v2h2V7z"/></svg>New village
+      </button>
+    </div>
+  </section>
+
+  <main class="hub">
+    <section class="section" id="games" aria-labelledby="gamesTitle">
+      <div class="section-head">
+        <h2 id="gamesTitle">CHOOSE A <span>CARTRIDGE</span></h2>
+        <p><strong id="gameCount">200+</strong> games built from <strong id="engineCount">30+</strong> complete engines: arcade, puzzle and board classics, each with its own twists.</p>
+      </div>
+      <div class="featured" id="featured"></div>
+      <div class="recent" id="recentWrap" hidden>
+        <h3 class="mini-head">CONTINUE PLAYING</h3>
+        <div class="recent-row" id="recentRow"></div>
+      </div>
+      <div class="toolbar" role="search">
+        <label class="search"><span class="sr-only">Search games</span>
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1h5v1h1v1h1v4H8v1H7v1H2V8H1V7H0V3h1V2h1zm1 2v4h4V3zM9 8h1v1h1v1h1v2h-2v-1H9v-1H8V9h1z"/></svg>
+          <input id="search" type="search" placeholder="Search 200+ games…" autocomplete="off">
+        </label>
+        <div class="chips" id="chips" role="tablist" aria-label="Categories"></div>
+        <button class="btn btn-gold" id="randomBtn">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1h10v10H1zm2 2v2h2V3zm4 0v2h2V3zM3 7v2h2V7zm4 0v2h2V7z"/></svg>Random
+        </button>
+      </div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+      <div class="game-grid" id="gameGrid"></div>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="howTitle">
+      <div class="section-head">
+        <h2 id="howTitle">HOW THE <span>VILLAGES</span> ARE MADE</h2>
+        <p>A two-pass <strong>Wave Function Collapse</strong> lays out roads first, then fills every lot with houses, trees and flowers — following socket rules so it always looks designed.</p>
+      </div>
+      <div class="wfc-grid">
+        <article class="wfc-step">
+          <canvas id="wfcLayout" width="192" height="128" aria-label="Pass 1: road layout"></canvas>
+          <div>
+            <h3>1 · LAYOUT PASS</h3>
+            <p>Only road pieces exist: straights, corners, T-junctions and crossings. No dead-end piece exists, so every road loops or leaves the map.</p>
+          </div>
+        </article>
+        <article class="wfc-step">
+          <canvas id="wfcDetail" width="192" height="128" aria-label="Pass 2: details"></canvas>
+          <div>
+            <h3>2 · DETAIL PASS</h3>
+            <p>Roads are locked in. Each empty lot collapses into grass, flowers, trees or a cottage. Lowest-entropy cell first, weighted random choice, then constraints ripple outward.</p>
+          </div>
+        </article>
+        <article class="wfc-step">
+          <canvas id="wfcTiles" width="192" height="128" aria-label="The tile modules"></canvas>
+          <div>
+            <h3>3 · SOCKET RULES</h3>
+            <p>Each tile edge has a socket. A front door only fits next to the side of a road, so every house faces a street.</p>
+            <div class="sockets"><code>R road</code><code>s roadside</code><code>G grass</code><code>D door</code><code>H wall</code></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="controls" aria-labelledby="controlsTitle">
+      <div class="section-head">
+        <h2 id="controlsTitle">CONTROLS</h2>
+        <p>Plays great on phones (add it to your home screen to play offline) and on desktop with a keyboard.</p>
+      </div>
+      <div class="controls-grid">
+        <div class="controls-card">
+          <h3>KEYBOARD</h3>
+          <dl>
+            <dt><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>WASD</kbd></dt><dd>Move</dd>
+            <dt><kbd>Z</kbd> / <kbd>Space</kbd></dt><dd>A button</dd>
+            <dt><kbd>X</kbd></dt><dd>B button</dd>
+            <dt><kbd>Enter</kbd> / <kbd>Esc</kbd></dt><dd>Start / pause</dd>
+            <dt><kbd>M</kbd> · <kbd>F</kbd></dt><dd>Mute · Full screen</dd>
+          </dl>
+        </div>
+        <div class="controls-card">
+          <h3>TOUCH</h3>
+          <dl>
+            <dt>D-pad</dt><dd>Slide your thumb to steer</dd>
+            <dt>Swipe screen</dt><dd>Turn instantly, chain swipes</dd>
+            <dt>Tap screen</dt><dd>A button (menus)</dd>
+            <dt>A · B</dt><dd>Confirm · Back</dd>
+            <dt>START</dt><dd>Pause</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="pixel">MADE WITH PIXELS &amp; WAVE FUNCTION COLLAPSE</p>
+    <p>Open source · Pure HTML, CSS &amp; JavaScript · Works offline</p>
+    <p>Font: Press Start 2P by CodeMan38 (SIL Open Font License). Fan-made tribute; not affiliated with any console maker.</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

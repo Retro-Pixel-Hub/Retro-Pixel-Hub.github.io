@@ -1,0 +1,1 @@
+Tiles, sprites and sounds are generated in code (see js/art/village-art.js and js/core/audio.js) so the hub ships with zero image/audio downloads. Drop PNG/OGG files here if you prefer file-based assets for new games.
