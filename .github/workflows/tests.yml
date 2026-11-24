@@ -1,0 +1,24 @@
+# Runs the WFC generator and catalogue tests on every push and pull request.
+# Publishing is done by GitHub Pages ("Deploy from a branch": main, / root),
+# so this workflow only checks the code and never deploys.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test WFC generator and catalogue
+        run: node tests/wfc.test.mjs && node tests/catalog.test.mjs
