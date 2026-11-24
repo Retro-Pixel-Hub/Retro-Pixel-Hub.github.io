@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://retro-pixel-hub.github.io/</loc></url>
+  <url><loc>https://retro-pixel-hub.github.io/games.html</loc></url>
   <url><loc>https://retro-pixel-hub.github.io/play.html?game=snake</loc></url>
   <url><loc>https://retro-pixel-hub.github.io/play.html?game=nibbles-open</loc></url>
   <url><loc>https://retro-pixel-hub.github.io/play.html?game=nibbles-box</loc></url>

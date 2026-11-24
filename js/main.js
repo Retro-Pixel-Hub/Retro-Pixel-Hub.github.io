@@ -181,7 +181,7 @@ function tile(game) {
         <span class="best">${best ? `BEST <b>${best}</b>` : game.cat.toUpperCase()}</span>
       </div>
     </a>
-    <button class="fav" aria-pressed="${favs.has(game.id)}" aria-label="Favourite ${game.title}">${STAR}</button>`;
+    <button type="button" class="fav" aria-pressed="${favs.has(game.id)}" aria-label="Favourite ${game.title}">${STAR}</button>`;
   el.querySelector('.fav').addEventListener('click', (e) => {
     e.preventDefault();
     if (favs.has(game.id)) favs.delete(game.id); else favs.add(game.id);
