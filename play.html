@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>Play · Retro Pixel Hub</title>
   <meta name="description" content="Play retro handheld-style pixel games in your browser — touch, keyboard and offline ready.">
   <meta name="theme-color" content="#0f1410">
@@ -14,11 +14,12 @@
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
   <link rel="preload" href="assets/fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/nozoom.js"></script>
 </head>
 <body class="play-page">
   <div class="player" id="player">
     <header class="player-bar">
-      <a class="icon-btn" href="./" aria-label="Back to the hub" title="Back to hub">
+      <a class="icon-btn" id="backBtn" href="./" aria-label="Back to the game menu" title="Game menu">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2h2v2h-2v2H8v2h2v2h2v2h-2v2H8v-2H6v-2H4V8h2V6h2V4h2z"/></svg>
       </a>
       <h1 class="player-title" id="gameTitle">Loading…</h1>

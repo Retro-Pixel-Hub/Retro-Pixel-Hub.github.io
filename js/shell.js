@@ -1,5 +1,5 @@
 /**
- * Player shell (play.html?game=<id>)
+ * Player shell: index.html (cartridge menu) and play.html?game=<id>
  *
  * Owns everything that is the same for every game: the canvas and its integer
  * scaling, the game loop, input devices, audio, settings, pause-on-blur,
@@ -29,16 +29,30 @@ import { registerPWA } from './pwa.js';
 
 const $ = (s) => document.querySelector(s);
 const params = new URLSearchParams(location.search);
-const meta = getGame(params.get('game') || 'snake') || GAMES[0];
+// No ?game= means the console boots into the cartridge menu (index.html).
+const MENU = {
+  id: 'menu', title: 'Retro Pixel Hub', module: './games/menu.js', p: {},
+};
+const isMenu = !params.get('game');
+const meta = isMenu ? MENU : getGame(params.get('game')) || GAMES[0];
 
 const canvas = $('#game');
 const ctx = canvas.getContext('2d', { alpha: false });
 const settings = loadSettings();
 
-document.title = `${meta.title} · Retro Pixel Hub`;
+if (isMenu) {
+  // The top-left button opens the full game library page instead of "back".
+  const back = $('#backBtn');
+  back.href = 'games.html';
+  back.setAttribute('aria-label', 'Open the game library');
+  back.title = 'Game library';
+  back.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 1h6v6H1zm8 0h6v6H9zM1 9h6v6H1zm8 0h6v6H9z"/></svg>';
+} else {
+  document.title = `${meta.title} · Retro Pixel Hub`;
+  // remember recently played games for the menu and the library
+  storage.set('recent', [meta.id, ...storage.get('recent', []).filter((id) => id !== meta.id)].slice(0, 12));
+}
 $('#gameTitle').textContent = meta.title;
-// remember recently played games for the hub
-storage.set('recent', [meta.id, ...storage.get('recent', []).filter((id) => id !== meta.id)].slice(0, 12));
 
 // ---------------------------------------------------------------------------
 //  Settings
@@ -153,7 +167,7 @@ function bootFrame(t) {
   const y = Math.min(118, -20 + t * 220);
   drawText(ctx, 'PIXEL HUB', gameW / 2, y, { size: 16, color: '#9bbc0f', align: 'center' });
   if (y >= 118) {
-    drawText(ctx, meta.title.toUpperCase(), gameW / 2, 146, { color: '#f7f3e3', align: 'center' });
+    drawText(ctx, isMenu ? 'INSERT CARTRIDGE' : meta.title.toUpperCase(), gameW / 2, 146, { color: '#f7f3e3', align: 'center' });
     const dots = '.'.repeat(1 + (Math.floor(t * 4) % 3));
     drawText(ctx, `LOADING${dots}`, gameW / 2 - 28, 250, { color: '#306230' });
   }

@@ -18,7 +18,7 @@ Pure HTML + CSS + JavaScript. No frameworks, no build step, no image or audio do
 
 ## 🕹️ The games (235 entries, 37 engines)
 
-Each **engine** is a complete game. Each **entry** is a distinct ruleset for it, with a different board, layout, speed, goal or twist, and its own high score. On the hub you can search them, filter by category, star favourites, jump back into recent games, or hit **Random**.
+Each **engine** is a complete game. Each **entry** is a distinct ruleset for it, with a different board, layout, speed, goal or twist, and its own high score. Pick them from the console's cartridge menu, or open the game library page (`games.html`) to search, filter by category, star favourites, jump back into recent games, or hit **Random**.
 
 | Engine | Category | Style | Entries |
 |---|---|---|---|
@@ -63,6 +63,9 @@ Each **engine** is a complete game. Each **entry** is a distinct ruleset for it,
 All names, sprites and sounds are original. The games are tributes to the genres, not copies of any commercial title.
 
 ## ✨ Features
+
+- **Opens as the handheld.** The home page is the console itself, booting into a cartridge menu: D-pad to browse, left/right to switch shelves (All, Arcade, Puzzle, Board, Favourites, Recent), A to play, SELECT to star a favourite. Tap a row to highlight it and tap again to play. The grid icon (top left) opens the full game library page.
+- **No zoom.** Pinch, double-tap and Ctrl/⌘ zoom are disabled on every page, so the console always stays at its designed size.
 
 - **235 playable games** across arcade, puzzle and board categories, all sharing one handheld look, one control scheme and one high-score system
 - **Snake: Village Edition**, the flagship game
@@ -204,20 +207,22 @@ The flagship Snake (`js/games/snake.js`) shows the lower-level module contract (
 ## 📁 Project structure
 
 ```
-├── index.html            # landing page / game selector
-├── play.html             # handheld-style player shell (?game=<id>)
+├── index.html            # the console: boots into the on-screen cartridge menu
+├── games.html            # game library page: search, filters, favourites
+├── play.html             # the console running one game (?game=<id>)
 ├── css/style.css
 ├── js/
 │   ├── wfc.js            # reusable Wave Function Collapse engine
 │   ├── village.js        # two-pass village generator + validator
 │   ├── catalog.js        # all 235 games: engines + variants
-│   ├── main.js           # landing page logic
+│   ├── main.js           # game library page logic
+│   ├── nozoom.js         # blocks pinch, double-tap and Ctrl zoom
 │   ├── shell.js          # player: loop, scaling, input, settings
 │   ├── pwa.js            # service worker + install button
 │   ├── art/village-art.js  # pixel art tiles & sprites (drawn in code)
 │   ├── core/             # rng, input, audio, storage, pixeltext, fx
 │   ├── arcade/           # kit.js + 28 engine files (37 game types)
-│   └── games/snake.js    # flagship WFC snake
+│   └── games/            # snake.js (flagship WFC snake), menu.js (cartridge menu)
 ├── assets/
 │   ├── fonts/            # Press Start 2P (OFL)
 │   ├── icons/            # PWA icons

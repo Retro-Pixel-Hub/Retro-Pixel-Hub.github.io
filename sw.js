@@ -8,11 +8,12 @@
  *
  * Bump CACHE_VERSION whenever you deploy changes to cached files.
  */
-const CACHE_VERSION = 'pixelhub-v2.0.2';
+const CACHE_VERSION = 'pixelhub-v2.1.0';
 
 const PRECACHE = [
   './',
   './index.html',
+  './games.html',
   './play.html',
   './manifest.json',
   './css/style.css',
@@ -58,6 +59,8 @@ const PRECACHE = [
   './js/core/rng.js',
   './js/core/storage.js',
   './js/games/snake.js',
+  './js/games/menu.js',
+  './js/nozoom.js',
   './assets/fonts/press-start-2p.woff2',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',

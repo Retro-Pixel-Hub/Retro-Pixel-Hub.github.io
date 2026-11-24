@@ -15,6 +15,7 @@
     { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
+    { "name": "Game library", "short_name": "Library", "url": "./games.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Play Snake", "short_name": "Snake", "url": "./play.html?game=snake", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }
