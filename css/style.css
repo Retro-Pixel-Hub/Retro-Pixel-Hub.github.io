@@ -398,7 +398,7 @@ body[data-controls="never"] .kbd-hint { display: block; }
 .toggle input:checked { background: var(--gb1); }
 .toggle input:checked::after { left: 24px; background: var(--gb3); }
 .select-row select { font: 9px var(--pixel); background: #0d1510; color: var(--text); border: 2px solid var(--line); padding: .5em; }
-.dialog menu { display: flex; justify-content: flex-end; margin: 1rem 0 0; padding: 0; }
+.dialog .dialog-actions { display: flex; justify-content: flex-end; margin: 1rem 0 0; padding: 0; }
 
 .noscript { padding: 2rem; text-align: center; font-family: var(--pixel); }
 

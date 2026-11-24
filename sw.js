@@ -8,7 +8,7 @@
  *
  * Bump CACHE_VERSION whenever you deploy changes to cached files.
  */
-const CACHE_VERSION = 'pixelhub-v2.0.1';
+const CACHE_VERSION = 'pixelhub-v2.0.2';
 
 const PRECACHE = [
   './',

@@ -40,14 +40,14 @@
       <a href="#games">Games</a>
       <a href="#how" class="hide-sm">How it works</a>
       <a href="#controls" class="hide-sm">Controls</a>
-      <button class="btn btn-ghost" id="installBtn" hidden>
+      <button type="button" class="btn btn-ghost" id="installBtn" hidden>
         <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M5 0h2v6h2v2H8v1H7v1H5V9H4V8H3V6h2zM0 10h2v1h8v-1h2v2H0z"/></svg>Install
       </button>
     </nav>
   </header>
 
   <section class="hero" aria-label="Featured">
-    <canvas id="banner" aria-label="A pixel-art village generated live with Wave Function Collapse"></canvas>
+    <canvas id="banner" role="img" aria-label="A pixel-art village generated live with Wave Function Collapse"></canvas>
     <div class="hero-overlay">
       <div class="hero-card">
         <h1>RETRO PIXEL HUB<small>HANDHELD CLASSICS · REBUILT</small></h1>
@@ -62,7 +62,7 @@
     </div>
     <div class="hero-tools">
       <span class="chip" id="seedChip" title="Seed of this village">SEED ----</span>
-      <button class="btn btn-ghost" id="rerollBtn" aria-label="Generate a new village">
+      <button type="button" class="btn btn-ghost" id="rerollBtn" aria-label="Generate a new village">
         <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1h10v10H1zm2 2v2h2V3zm4 0v2h2V3zM3 7v2h2V7zm4 0v2h2V7z"/></svg>New village
       </button>
     </div>
@@ -85,7 +85,7 @@
           <input id="search" type="search" placeholder="Search 200+ games…" autocomplete="off">
         </label>
         <div class="chips" id="chips" role="tablist" aria-label="Categories"></div>
-        <button class="btn btn-gold" id="randomBtn">
+        <button type="button" class="btn btn-gold" id="randomBtn">
           <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1h10v10H1zm2 2v2h2V3zm4 0v2h2V3zM3 7v2h2V7zm4 0v2h2V7z"/></svg>Random
         </button>
       </div>
@@ -100,21 +100,21 @@
       </div>
       <div class="wfc-grid">
         <article class="wfc-step">
-          <canvas id="wfcLayout" width="192" height="128" aria-label="Pass 1: road layout"></canvas>
+          <canvas id="wfcLayout" width="192" height="128" role="img" aria-label="Pass 1: road layout"></canvas>
           <div>
             <h3>1 · LAYOUT PASS</h3>
             <p>Only road pieces exist: straights, corners, T-junctions and crossings. No dead-end piece exists, so every road loops or leaves the map.</p>
           </div>
         </article>
         <article class="wfc-step">
-          <canvas id="wfcDetail" width="192" height="128" aria-label="Pass 2: details"></canvas>
+          <canvas id="wfcDetail" width="192" height="128" role="img" aria-label="Pass 2: details"></canvas>
           <div>
             <h3>2 · DETAIL PASS</h3>
             <p>Roads are locked in. Each empty lot collapses into grass, flowers, trees or a cottage. Lowest-entropy cell first, weighted random choice, then constraints ripple outward.</p>
           </div>
         </article>
         <article class="wfc-step">
-          <canvas id="wfcTiles" width="192" height="128" aria-label="The tile modules"></canvas>
+          <canvas id="wfcTiles" width="192" height="128" role="img" aria-label="The tile modules"></canvas>
           <div>
             <h3>3 · SOCKET RULES</h3>
             <p>Each tile edge has a socket. A front door only fits next to the side of a road, so every house faces a street.</p>
